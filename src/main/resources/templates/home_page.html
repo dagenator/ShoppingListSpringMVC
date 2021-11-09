@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://thymeleaf.org">
+<head>
+
+    <meta charset="utf-8" />
+    <title>HTML5</title>
+
+    <style>
+        article, aside, details, figcaption, figure, footer,header,
+        hgroup, menu, nav, section { display: block; }
+    </style>
+</head>
+<body>
+<div>
+    <form action = "/add" method ="Post" >
+        <p><b>Add in to do list:</b><br>
+            <input name="record" type="text" size="40" placeholder="Please enter your task here">
+        <p><input type="submit" value="Отправить"></p>
+        </p>
+    </form>
+</div>
+
+<h3> To Do List</h3>
+<table>
+    <tr>
+        <th>Records</th>
+    </tr>
+    <th:block th:each="record : ${ToDo}">
+        <tr>
+            <td th:text="${record}"></td>
+        </tr>
+    </th:block>
+</table>
+
+<table>
+    <tr>
+        <th></th>
+    </tr>
+    <th:block th:each="record : ${Done}">
+        <tr>
+            <td th:text="${record}"></td>
+        </tr>
+    </th:block>
+</table>
+
+</body>
+</html>
