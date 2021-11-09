@@ -12,7 +12,7 @@ import org.springframework.web.servlet.view.RedirectView;
 public class AddController {
 
     @RequestMapping(value = "/add",method = RequestMethod.POST)
-    public RedirectView Home( @RequestParam(required = true, name = "record") String s){
+    public RedirectView AddInToDo( @RequestParam(required = true, name = "record") String s){
         ShoppingList.addNewInToDo(s);
          return new RedirectView("/home");
     }

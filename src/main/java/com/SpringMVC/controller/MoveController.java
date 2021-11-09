@@ -8,18 +8,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.view.RedirectView;
 
 @Controller
-public class DeleteController {
+public class MoveController {
 
-    @RequestMapping(value = "/deleteInToDo",method = RequestMethod.POST)
-    public RedirectView DeleteInToDo(@RequestParam(required = false, name = "id") int id){
-        System.out.println(id);
-        ShoppingList.deleteInToDoList(id);
+    @RequestMapping(value = "/moveInDone",method = RequestMethod.POST)
+    public RedirectView MoveToDone(@RequestParam(required = true, name = "id") int id){
+        ShoppingList.moveToDoneList(id);
         return new RedirectView("/home");
     }
-
-    @RequestMapping(value = "/deleteInDone",method = RequestMethod.POST)
-    public RedirectView DeleteInDone(@RequestParam(required = true, name = "id") int id){
-        ShoppingList.deleteInDoneList(id);
+    @RequestMapping(value = "/moveInToDo",method = RequestMethod.POST)
+    public RedirectView MoveToDo(@RequestParam(required = true, name = "id") int id){
+        ShoppingList.moveInToDoList(id);
         return new RedirectView("/home");
     }
 }

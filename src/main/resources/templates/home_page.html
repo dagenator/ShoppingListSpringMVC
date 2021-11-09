@@ -10,39 +10,71 @@
         article, aside, details, figcaption, figure, footer,header,
         hgroup, menu, nav, section { display: block; }
     </style>
+    <style>
+        .doneRecord {
+            text-decoration: line-through;
+        }
+        .all{
+            font-family: Verdana, Arial, Helvetica, sans-serif;
+            font-size: 15pt
+        }
+
+    </style>
 </head>
-<body>
+<body class = "all">
 <div>
     <form action = "/add" method ="Post" >
         <p><b>Add in to do list:</b><br>
-            <input name="record" type="text" size="40" placeholder="Please enter your task here">
-        <p><input type="submit" value="Отправить"></p>
-        </p>
+            <label>
+                <input name="record" type="text" size="40" placeholder="Please enter your task here">
+                <input type="submit" value="Send">
+            </label>
+
+
     </form>
 </div>
+<h4>____________________________ </h4>
+<h2 class = "table"> To Do List</h2>
+<div class = "table">
+    <table>
+        <th:block th:each="record, state : ${ToDo}">
+            <tr>
+                <td  width="20" th:text="${state.index+1}+'.'"></td>
+                <td  width="200" th:text="${record}"></td>
 
-<h3> To Do List</h3>
-<table>
-    <tr>
-        <th>Records</th>
-    </tr>
-    <th:block th:each="record : ${ToDo}">
-        <tr>
-            <td th:text="${record}"></td>
-        </tr>
-    </th:block>
-</table>
+                <td>
+                    <form action = "/deleteInToDo" method ="POST" >
+                    <button type="submit" name = "id" th:value="${state.index}" > <span>&#10134</span> </button>
+                    </form>
+                </td>
+                <td>
+                    <form action = "/moveInDone" method ="POST" >
+                        <button type="submit" name = "id" th:value="${state.index}" > <span>&#9989</span> </button>
+                    </form>
+                </td>
+            </tr>
+        </th:block>
+    </table>
 
-<table>
-    <tr>
-        <th></th>
-    </tr>
-    <th:block th:each="record : ${Done}">
-        <tr>
-            <td th:text="${record}"></td>
-        </tr>
-    </th:block>
-</table>
+    <table>
+        <th:block th:each="record, state : ${Done}">
+            <tr>
+                <td width="20"><span>&#9642;</span></td>
+                <td  width="200" class = "doneRecord" th:text="${record}"></td>
 
+                <td>
+                    <form action = "/deleteInDone" method ="POST" >
+                        <button type="submit" name = "id" th:value="${state.index}" > <span>&#10134</span> </button>
+                    </form>
+                </td>
+                <td>
+                    <form action = "/moveInToDo" method ="POST" >
+                        <button type="submit" name = "id" th:value="${state.index}" > <span>&#11014</span> </button>
+                    </form>
+                </td>
+            </tr>
+        </th:block>
+    </table>
+</div>
 </body>
 </html>

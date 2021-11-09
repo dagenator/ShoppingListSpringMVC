@@ -33,5 +33,20 @@ public class ShoppingList {
         DoneList.add(ToDoList.get(indexInToDoList));
         ToDoList.remove(indexInToDoList);
     }
+    public static void moveInToDoList(int indexInDoneList){
+        ToDoList.add(DoneList.get(indexInDoneList));
+        DoneList.remove(indexInDoneList);
+    }
+
+    public static void deleteInToDoList(int num){
+        ToDoList.remove(num);
+    }
+    public static void deleteInToDoList(String s){
+        ToDoList.remove(s);
+    }
+
+    public static void deleteInDoneList(int num){
+        DoneList.remove(num);
+    }
 
 }
